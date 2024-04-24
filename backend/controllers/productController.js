@@ -14,10 +14,21 @@ const Product= require('../models/Product');
 //     }
 // };
 
+// const getAllProduct = async (req, res) => {
+//     try {
+//         // Implementation code to fetch products from the database
+//         res.status(200).json({ message: 'Products fetched successfully' });
+//     } catch (error) {
+//         console.error('Error fetching products:', error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
+// Function to fetch all products
 const getAllProduct = async (req, res) => {
     try {
-        // Implementation code to fetch products from the database
-        res.status(200).json({ message: 'Products fetched successfully' });
+        const products = await Product.find();
+        res.status(200).json(products);
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -74,6 +85,6 @@ const deleteProduct = async (req, res) => {
 };
 
 
-module.exports = { getAllProduct, createProduct, updateProduct, deleteProduct};
+module.exports = { Product, getAllProduct, createProduct, updateProduct, deleteProduct};
 
 
