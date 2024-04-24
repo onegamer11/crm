@@ -66,6 +66,8 @@ const app = express();
 
 const mongoose = require('mongoose');
 
+const invoiceRoutes = require('./routes/invoiceRoutes');
+
 
 // Middleware
 app.use(bodyParser.json());
@@ -86,6 +88,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
+
+
 mongoose.connect('mongodb://localhost:27017/crm-website', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -94,6 +98,9 @@ mongoose.connect('mongodb://localhost:27017/crm-website', {
 }).catch((err) => {
   console.error('Error connecting to MongoDB:', err);
 });
+
+// Routes
+app.use('/api', invoiceRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

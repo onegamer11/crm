@@ -1,0 +1,60 @@
+/* StaffPage.css */
+
+.staff-page {
+    padding: 20px;
+}
+
+.banner {
+    background-color: #ff6b6b;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.banner h2 {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+}
+
+.login-info {
+    margin-bottom: 20px;
+}
+
+.login-info p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+.highlight {
+    color: #007bff;
+    font-weight: bold;
+}
