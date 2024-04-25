@@ -72,16 +72,21 @@ const invoiceRoutes = require('./routes/invoiceRoutes');
 // Middleware
 app.use(bodyParser.json());
 
-app.use(cors({
-    origin: 'http://localhost:3000' // Allow requests from localhost:3000
-  }));
+app.use("*", cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 
 // Serve static files from the frontend build directory
-const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'crm-app', 'build');
+const frontendBuildPath = path.join(__dirname, '..', 'frontend', 'build');
 app.use(express.static(frontendBuildPath));
 
 // API routes
 app.use('/api', apiRoutes); // Mount your API routes
+
+// Routes
+app.use('/api', invoiceRoutes);
 
 // Serve the frontend index.html file for any other routes
 app.get('*', (req, res) => {
@@ -99,8 +104,7 @@ mongoose.connect('mongodb://localhost:27017/crm-website', {
   console.error('Error connecting to MongoDB:', err);
 });
 
-// Routes
-app.use('/api', invoiceRoutes);
+
 
 // Start the server
 const PORT = process.env.PORT || 5000;

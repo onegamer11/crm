@@ -16,11 +16,13 @@ const {  getAllContracts, createContract, updateContract, deleteContract } = req
 
 // // Authentication routes
 router.post('/login', function (req, res) {authRoutes.login});
-router.post('/register', function (req, res) {authRoutes.register});
+router.post('/register', function(req, res) { authRoutes.register});
 
 // Product routes
 router.get('/product', function (req, res){authMiddleware.authenticate, getAllProduct});
 // router.get('/product', authMiddleware.authenticate, getAllProduct);
+
+// router.route('/product').get(authMiddleware.authenticate, getAllProduct)
 
 router.post('/product', function (req, res ) {authMiddleware.authenticate, createProduct});
 router.put('/product/:id', function (req, res ) {authMiddleware.authenticate, updateProduct});

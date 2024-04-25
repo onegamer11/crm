@@ -10,7 +10,7 @@ const BiddingPage = () => {
 
     useEffect(() => {
         // Fetch bidding information from backend
-        axios.get('http://localhost:5000/api/bids')
+        axios.get('http://localhost:5000/api')
             .then(response => {
                 setBids(response.data);
             })
@@ -25,7 +25,7 @@ const BiddingPage = () => {
 
     const handleSaveBid = async () => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/bids/${editedBid.id}`, editedBid);
+            const response = await axios.put(`http://localhost:5000/api${editedBid.id}`, editedBid);
             console.log('Bid saved:', response.data);
             setEditedBid(null);
         } catch (error) {
@@ -35,7 +35,7 @@ const BiddingPage = () => {
 
     const handleDeleteBid = async (bidId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/bids/${bidId}`);
+            await axios.delete(`http://localhost:5000/api${bidId}`);
             setBids(bids.filter(bid => bid.id !== bidId));
         } catch (error) {
             console.error('Error deleting bid:', error);

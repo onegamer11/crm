@@ -40,7 +40,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/supplier" element={<SupplierPage />} />
           <Route path="/staff" element={<StaffPage />} />
+          {/* <Route path="/site-manager" element={<SiteManagerPage />} /> */}
           <Route path="/site-manager" element={<SiteManagerPage />} />
+
           <Route path="/products" element={<ProductsPage userRole={userRole} />} />
           <Route path="/bidding" element={<BiddingPage />} />
           <Route path="/contracts" element={<ContractManagementPage />} />

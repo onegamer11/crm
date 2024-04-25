@@ -10,7 +10,7 @@ const ContractManagementPage = () => {
 
     useEffect(() => {
         // Fetch contract information from backend
-        axios.get('http://localhost:5000/api/contracts')
+        axios.get('http://localhost:5000/api')
             .then(response => {
                 setContracts(response.data);
             })

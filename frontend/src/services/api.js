@@ -23,6 +23,9 @@ export const createContract = (contractData) => api.post('/contracts', contractD
 export const getLoginData = () => api.get('/login-data');
 export const createLoginData = (loginData) => api.post('/login-data', loginData);
 
+export const getInvoices = () => api.get('/invoices');
+export const createInvoice = (invoiceData) => api.post('/invoices', invoiceData);
+
 // You can add more functions for other endpoints as needed
 
 export default api;

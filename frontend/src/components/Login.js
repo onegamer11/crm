@@ -158,6 +158,7 @@ const Login = () => {
         event.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/api/login', formData);
+            console.log(response.data);
             const { role } = formData;
             navigate(`/${role}`); // Use navigate to redirect to the specified path
         } catch (error) {
