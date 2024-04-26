@@ -44,7 +44,7 @@ function App() {
           <Route path="/site-manager" element={<SiteManagerPage />} />
 
           <Route path="/products" element={<ProductsPage userRole={userRole} />} />
-          <Route path="/bidding" element={<BiddingPage />} />
+          <Route path="/biddings" element={<BiddingPage />} />
           <Route path="/contracts" element={<ContractManagementPage />} />
           <Route path="/invoices" element={<InvoicePage />} />
         </Routes>

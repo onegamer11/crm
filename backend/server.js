@@ -61,6 +61,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const apiRoutes = require('./routes/api'); // Import your backend API routes
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -84,6 +85,7 @@ app.use(express.static(frontendBuildPath));
 
 // API routes
 app.use('/api', apiRoutes); // Mount your API routes
+app.use('/api', authRoutes);
 
 // Routes
 app.use('/api', invoiceRoutes);

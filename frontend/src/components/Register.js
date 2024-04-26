@@ -72,44 +72,115 @@
 
 
 
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+// import '../styles/Register.css';
+
+// const Register = () => {
+//     const navigate = useNavigate(); // Initialize useNavigate hook
+//     const [formData, setFormData] = useState({
+//         username: '',
+//         email: '', // Add email field to state
+//         password: '',
+//         role: 'staff'
+//     });
+
+//     const handleChange = (event) => {
+//         const { name, value } = event.target;
+//         setFormData({
+//             ...formData,
+//             [name]: value,
+//         });
+//     };
+
+//     const handleSubmit = async (event) => {
+//         event.preventDefault();
+//         try {
+//             await axios.post('http://localhost:5000/api/register', formData);
+//             navigate('/login'); // Redirect to login page upon successful registration
+//         } catch (error) {
+//             console.error('Registration failed:', error.message);
+//         }
+//     };
+
+//     return (
+//         <div className="register-container">
+//             <div className="register-box">
+//                 <h2>Register</h2>
+//                 <form onSubmit={handleSubmit}>
+                //     <div className="input-group">
+                //         <label htmlFor="username">Username:</label>
+                //         <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} />
+                //     </div>
+                //     <div className="input-group">
+                //         <label htmlFor="email">Email:</label> {/* Add email input field */}
+                //         <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+                //     </div>
+                //     <div className="input-group">
+                //         <label htmlFor="password">Password:</label>
+                //         <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
+                //     </div>
+                //     <div className="input-group">
+                //         <label htmlFor="role">Select Role:</label>
+                //         <select id="role" name="role" value={formData.role} onChange={handleChange}>
+                //             <option value="staff">Staff</option>
+                //             <option value="siteManager">Site Manager</option>
+                //             <option value="supplier">Supplier</option>
+                //         </select>
+                //     </div>
+                //     <button type="submit" className="register-button">Register</button>
+                // </form>
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Register;
+
+
+
+// Register.js
+
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../services/api'; // Import registerUser function from api.js
 import '../styles/Register.css';
 
 const Register = () => {
-    const navigate = useNavigate(); // Initialize useNavigate hook
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '', // Add email field to state
-        password: '',
-        role: 'staff'
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    role: 'staff'
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await registerUser(formData); // Call registerUser function from api.js
+      navigate('/login');
+    } catch (error) {
+      console.error('Registration failed:', error.message);
+    }
+  };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            await axios.post('http://localhost:5000/api/register', formData);
-            navigate('/login'); // Redirect to login page upon successful registration
-        } catch (error) {
-            console.error('Registration failed:', error.message);
-        }
-    };
-
-    return (
-        <div className="register-container">
-            <div className="register-box">
-                <h2>Register</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="input-group">
+  return (
+    <div className="register-container">
+      <div className="register-box">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          
+        <div className="input-group">
                         <label htmlFor="username">Username:</label>
                         <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} />
                     </div>
@@ -131,11 +202,11 @@ const Register = () => {
                     </div>
                     <button type="submit" className="register-button">Register</button>
                 </form>
-            </div>
-        </div>
-    );
+          
+          
+      </div>
+    </div>
+  );
 };
 
 export default Register;
-
-

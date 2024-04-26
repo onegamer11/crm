@@ -143,7 +143,7 @@ const Login = () => {
     const [formData, setFormData] = useState({
         username: '', 
         password: '',
-        role: 'staff'
+        role: 'staff '
     });
 
     const handleChange = (event) => {
@@ -183,7 +183,7 @@ const Login = () => {
                         <label htmlFor="role">Select Role:</label>
                         <select id="role" name="role" value={formData.role} onChange={handleChange}>
                             <option value="staff">Staff</option>
-                            <option value="siteManager">Site Manager</option>
+                            <option value="site-manager">Site Manager</option>
                             <option value="supplier">Supplier</option>
                         </select>
                     </div>
