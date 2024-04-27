@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['staff', 'site-manager', 'supplier'],
+    enum: ['staff', 'siteManager', 'supplier'],
     required: true
   },
   // Add more fields as needed

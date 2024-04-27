@@ -64,14 +64,23 @@ const StaffPage = () => {
                     ))}
                 </ul>
             </div>
-            <div className="products-section">
+            {/* <div className="products-section">
                 <h3>Products</h3>
                 <ul>
                     {products.map(product => (
                         <li key={product.id}>{product.name}</li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
+
+<div className="products-section">
+    <h3>Products</h3>
+    <ul>
+        {Array.isArray(products) && products.map(product => (
+            <li key={product.id}>{product.name}</li>
+        ))}
+    </ul>
+</div>
             <div className="contracts-section">
                 <h3>Contracts</h3>
                 <ul>

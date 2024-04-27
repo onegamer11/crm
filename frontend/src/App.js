@@ -36,8 +36,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/supplier" element={<SupplierPage />} />
           <Route path="/staff" element={<StaffPage />} />
           {/* <Route path="/site-manager" element={<SiteManagerPage />} /> */}

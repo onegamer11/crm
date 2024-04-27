@@ -366,7 +366,7 @@ const BiddingPage = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/bids');
+            const response = await axios.get('http://localhost:5000/api/biddings');
             if (Array.isArray(response.data)) {
                 setBids(response.data);
             } else {
@@ -383,7 +383,7 @@ const BiddingPage = () => {
 
     const handleSaveBid = async () => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/bids/${editedBid._id}`, editedBid);
+            const response = await axios.put(`http://localhost:5000/api/biddings/${editedBid._id}`, editedBid);
             console.log('Bid saved:', response.data);
             setEditedBid(null);
             fetchData(); // Refresh bids after saving
@@ -394,7 +394,7 @@ const BiddingPage = () => {
 
     const handleDeleteBid = async (bidId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/bids/${bidId}`);
+            await axios.delete(`http://localhost:5000/api/biddings/${bidId}`);
             setBids(bids.filter(bid => bid._id !== bidId));
         } catch (error) {
             console.error('Error deleting bid:', error);
@@ -419,7 +419,7 @@ const BiddingPage = () => {
 
     const handleAddBid = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/bids', newBid);
+            const response = await axios.post('http://localhost:5000/api/biddings', newBid);
             console.log('Bid added:', response.data);
             setNewBid({
                 productId: '',
