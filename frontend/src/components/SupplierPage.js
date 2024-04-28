@@ -9,23 +9,44 @@ const SupplierPage = () => {
     const [contracts, setContracts] = useState([]);
     const [editedBidding, setEditedBidding] = useState(null);
     const [editedProduct, setEditedProduct] = useState(null);
+    const [showAddProductModal, setShowAddProductModal] = useState(false);
+    const [newProduct, setNewProduct] = useState({
+        name: '',
+        description: '',
+        price: 0,
+        image: '',
+    });
 
     useEffect(() => {
         fetchData();
     }, []);
+
+
 
     const fetchData = async () => {
         try {
             const biddingsResponse = await axios.get('http://localhost:5000/api/biddings');
             setBiddings(biddingsResponse.data);
 
-            const productsResponse = await axios.get('http://localhost:5000/api/products');
+            const productsResponse = await axios.get('http://localhost:5000/api/product');
             setProducts(productsResponse.data);
 
             const contractsResponse = await axios.get('http://localhost:5000/api/contracts');
             setContracts(contractsResponse.data);
         } catch (error) {
             console.error('Error fetching data:', error);
+        }
+    };
+
+    const handleAddProduct = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/product', newProduct);
+            console.log('Product added:', response.data);
+            setProducts([...products, response.data]);
+            setShowAddProductModal(false);
+            setNewProduct({ name: '', description: '', price: 0, image: '' });
+        } catch (error) {
+            console.error('Error adding product:', error);
         }
     };
 
@@ -79,7 +100,7 @@ const SupplierPage = () => {
 
     const handleSaveProduct = async () => {
         try {
-            const response = await axios.put(`http://localhost:5000/api/products/${editedProduct.id}`, editedProduct);
+            const response = await axios.put(`http://localhost:5000/api/product/${editedProduct.id}`, editedProduct);
             console.log('Product saved:', response.data);
             setEditedProduct(null);
         } catch (error) {
@@ -98,7 +119,7 @@ const SupplierPage = () => {
 
     const handleDeleteProduct = async (productId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/products/${productId}`);
+            await axios.delete(`http://localhost:5000/api/product/${productId}`);
             setProducts(products.filter(product => product.id !== productId));
         } catch (error) {
             console.error('Error deleting product:', error);
@@ -188,7 +209,28 @@ const SupplierPage = () => {
                     ))}
                 </ul>
             </div>
+
+            {/* Add Product Modal */}
+            {showAddProductModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h3>Add Product</h3>
+                        <label>Name:</label>
+                        <input type="text" name="name" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} />
+                        <label>Description:</label>
+                        <textarea name="description" value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}></textarea>
+                        <label>Price:</label>
+                        <input type="number" name="price" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} />
+                        <label>Image:</label>
+                        <input type="file" name="image" onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })} />
+                        <button onClick={handleAddProduct}>Add Product</button>
+                        <button onClick={() => setShowAddProductModal(false)}>Cancel</button>
+                    </div>
+                </div>
+            )}
         </div>
+
+       
     );
 };
 

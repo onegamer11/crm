@@ -15,7 +15,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  // Add more fields as needed
+  image: {
+    type: String, // Assuming you'll store the image URL as a string
+    required: true
+},
 });
 
 const Product = mongoose.model('Product', productSchema);

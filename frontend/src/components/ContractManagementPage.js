@@ -3,10 +3,38 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/ContractManagementPage.css';
+import Modal from './Modal';
 
 const ContractManagementPage = () => {
     const [contracts, setContracts] = useState([]);
     const [editedContract, setEditedContract] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/contracts');
+            setContracts(response.data);
+        } catch (error) {
+            console.error('Error fetching contracts:', error);
+        }
+    };
+
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const updateContracts = () => {
+        fetchData();
+    };
 
     useEffect(() => {
         // Fetch contract information from backend
@@ -71,6 +99,8 @@ const ContractManagementPage = () => {
     return (
         <div className="contract-management-page">
             <h2>Contract Management Page</h2>
+            <button onClick={openModal}>Create Contract</button>
+            <Modal showModal={showModal} closeModal={closeModal} updateContracts={updateContracts} />
             <table>
                 <thead>
                     <tr>

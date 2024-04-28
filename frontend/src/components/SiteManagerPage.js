@@ -183,7 +183,7 @@ const SiteManagerPage = () => {
 
     const handleDeleteProduct = async (productId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/products/${productId}`);
+            await axios.delete(`http://localhost:5000/api/product/${productId}`);
             setProducts(products.filter(product => product.id !== productId));
         } catch (error) {
             console.error('Error deleting product:', error);
